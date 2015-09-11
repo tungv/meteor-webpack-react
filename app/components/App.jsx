@@ -1,34 +1,28 @@
 /* global ReactMeteorData */
 import React from 'react';
-import BlazeTemplate from './BlazeTemplate';
+import BaseComponent from './baseComponent';
+import MeteorData from './MeteorDataDecorator';
 import {Users, Posts} from 'app/collections';
 import './App.css';
 
-Meteor.call('sayHello', function(err, res) {
-  console.log(res);
-});
-
-let App = React.createClass({
-  mixins: [ReactMeteorData],
-
-  getMeteorData() {
-    return {
-      users: Users.find().fetch()
-    };
-  },
+@MeteorData(() =>  {
+  Meteor.subscribe('all_posts')
+  return {
+    posts: Posts.find().fetch()
+  };
+})
+class App extends React.Component {
 
   render() {
-    let userCount = Users.find().fetch().length;
-    let postsCount = Posts.find().fetch().length;
+    console.log(this.props.meteorData.posts);
     return (
       <div className="App">
-        <BlazeTemplate template={Template.loginButtons} />
-        <h1>Hello Webpack!</h1>
-        <p>There are {userCount} users in the Minimongo  (login to change)</p>
-        <p>There are {postsCount} posts in the Minimongo  (autopublish removed)</p>
+        <h1>Hello {this.props.name}!!!</h1>
+        <p>There are {this.props.meteorData.posts.length} posts in the Minimongo  (autopublish removed)</p>
+        <button onClick={()=>Posts.insert({name: 'new name'})}>new post</button>
       </div>
     );
   }
-});
+}
 
-export default App;
+export default App
