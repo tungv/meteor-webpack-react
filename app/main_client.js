@@ -1,4 +1,4 @@
-import './routing'
+import './routing/client_routes'
 import React from 'react';
 import App from './components/App.jsx';
 

@@ -1,3 +1,4 @@
+/* global ReactMeteorData */
 import React          from 'react';
 
 export default function MeteorData(getMeteorData) {

@@ -1,4 +1,3 @@
-/* global ReactMeteorData */
 import React from 'react';
 import BaseComponent from './baseComponent';
 import MeteorData from './MeteorDataDecorator';

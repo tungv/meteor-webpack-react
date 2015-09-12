@@ -1,6 +1,6 @@
-import {Posts} from 'app/collections';
+import {Posts} from 'app/collections'
 
-Posts.allows({
+Posts.allow({
   insert() {
     return true
   }
