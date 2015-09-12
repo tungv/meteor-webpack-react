@@ -14,7 +14,7 @@ export default function MeteorData(getMeteorData) {
         this[key] = ReactMeteorData[key];
       });
 
-      this.getMeteorData = getMeteorData
+      this.getMeteorData = () => getMeteorData(props)
     }
 
     render() {

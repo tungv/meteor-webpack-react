@@ -5,16 +5,14 @@ import MeteorData from './MeteorDataDecorator';
 import {Users, Posts} from 'app/collections';
 import './App.css';
 
-@MeteorData(() =>  {
+@MeteorData(props =>  {
   Meteor.subscribe('all_posts')
   return {
     posts: Posts.find().fetch()
   };
 })
-class App extends React.Component {
-
+class App extends BaseComponent {
   render() {
-    console.log(this.props.meteorData.posts);
     return (
       <div className="App">
         <h1>Hello {this.props.name}!!!</h1>
