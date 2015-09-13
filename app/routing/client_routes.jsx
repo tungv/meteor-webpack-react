@@ -1,13 +1,24 @@
+/* global Iron */
 import React from 'react'
 import App from 'app/components/App'
 
-console.log('FlowRouter');
+console.log('Router');
+const clientRouter = new Iron.Router({autoStart: false})
 
-FlowRouter.route('/app/:name', {
-  action(params) {
-    const rootElement = document.getElementById("root");
-    React.render(<App name={params.name} />, rootElement);
-  }
+clientRouter.route('/app/:name', function() {
+
+  const params = this.params
+
+  this.render('react', {
+    data: {
+      render(templateInstance) {
+        const component = <App name={params.name} />
+        const rootElement = templateInstance.$('.container:first')[0]
+        React.render(component, rootElement);
+      }
+    }
+  })
+
 });
 
-FlowRouter.initialize()
+clientRouter.start()

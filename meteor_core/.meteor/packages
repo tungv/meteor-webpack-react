@@ -8,5 +8,5 @@ meteor-platform
 accounts-ui
 accounts-password
 babel-runtime
-kadira:flow-router
+iron:router
 react-meteor-data

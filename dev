@@ -29,6 +29,6 @@ rm -rvf assets
   cd $METEOR_DIR
   ln -sf $WEBPACK_DIR/$SERVER_BUNDLE server/server.bundle.js &&
   ln -sf $WEBPACK_DIR/loadClientBundle.html client/loadClientBundle.html &&
+  #ROOT_URL=http://localhost:${1:-3000}/transform/ 
   meteor --settings ../settings/devel.json &
 ) | cat
-
