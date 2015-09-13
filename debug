@@ -31,5 +31,3 @@ rm -rvf assets
   export NODE_OPTIONS='--debug=5858' &&
   meteor --settings ../settings/devel.json &
 ) | cat
-
-

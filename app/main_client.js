@@ -1,6 +1,10 @@
 import './routing/client_routes'
 import React from 'react';
-import App from './components/App.jsx';
+import Hello from './components/Hello.jsx';
+
+// GLOBAL: expose React to global
+// ReactLayout needs this
+window.React = React
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
@@ -9,5 +13,5 @@ Accounts.ui.config({
 console.log('Running on client only');
 //
 // Meteor.startup(() => {
-//   React.render(<App/>, document.getElementById('root'));
+//   React.render(<Hello/>, document.getElementById('root'));
 // });

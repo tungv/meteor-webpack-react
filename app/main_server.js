@@ -2,7 +2,6 @@ import {Posts} from 'app/collections'
 import {createPosts, createUsers} from './fixtures'
 import './method_example'
 import './publications'
-import './routing/server_routes.jsx'
 import './policies'
 
 // these will only run on the sever since we only 'import' them in main_server.js

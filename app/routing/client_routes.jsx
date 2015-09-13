@@ -1,39 +1,38 @@
 /* global Iron */
 import React from 'react'
-import App from 'app/components/App'
+import MasterLayout from 'app/layouts/master'
+import Hello from 'app/components/Hello'
+import { Posts } from 'app/collections'
 
-console.log('Router');
-// const clientRouter = new Iron.Router({autoStart: false})
-const clientRouter = Router
-
-clientRouter.route('/', function () {
-  this.render('react', {
-    data: {
-      renderReact(tmpl) {
-        const component = <div>Home</div>
-        const rootElement = tmpl.$('.container:first')[0]
-        React.render(component, rootElement);
-      }
-    }
-  })
+console.log('Flow Router');
+const mainRouter = FlowRouter.group({
+  prefix: __meteor_runtime_config__.ROOT_URL_PATH_PREFIX || '',
+  name: 'main'
 })
 
-clientRouter.route('/app/:name', function() {
+mainRouter.route('/', {
+  name: 'home',
+  action() {
+    ReactLayout.render(MasterLayout, {content: <div>Home!</div>})
+  }
+})
 
-  const params = this.params
-
-  this.layout('MasterLayout')
-
-  this.render('react', {
-    data: {
-      renderReact(templateInstance) {
-        const component = <App name={params.name} />
-        const rootElement = templateInstance.$('.container:first')[0]
-        React.render(component, rootElement);
-      }
-    }
-  })
+mainRouter.route('/hello/:name', {
+  name: 'hello',
+  action(params) {
+    ReactLayout.render(MasterLayout, {content: <Hello {...params}/>})
+  }
 
 });
 
-clientRouter.start()
+mainRouter.route('/new_post', {
+  name: 'new_post',
+  triggersEnter: [(context, redirect) => {
+    const name = context.queryParams.name || 'dynamic'
+    Posts.insert({name})
+    redirect(`/app/${ name }`)
+  }]
+});
+
+
+FlowRouter.initialize()
