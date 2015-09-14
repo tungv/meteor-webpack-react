@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseComponent from './baseComponent';
+import BaseComponent from './BaseComponent';
 import MeteorData from './MeteorDataDecorator';
 import {Users, Posts} from 'app/collections';
 import './App.css';

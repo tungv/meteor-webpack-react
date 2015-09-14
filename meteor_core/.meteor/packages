@@ -10,3 +10,4 @@ accounts-password
 babel-runtime
 iron:router
 react-meteor-data
+kadira:react-layout

@@ -1,6 +1,6 @@
 import './routing/client_routes'
 import React from 'react';
-import App from './components/App.jsx';
+import BaseComponent from './components/BaseComponent.jsx';
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
@@ -9,5 +9,5 @@ Accounts.ui.config({
 console.log('Running on client only');
 //
 // Meteor.startup(() => {
-//   React.render(<App/>, document.getElementById('root'));
+//   React.render(<BaseComponent/>, document.getElementById('root'));
 // });
